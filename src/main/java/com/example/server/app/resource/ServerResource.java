@@ -38,7 +38,6 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 @RequestMapping("/server")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin("*")
 public class ServerResource {
     private final ServerServiceImpl serverService;
 
