@@ -4,6 +4,7 @@ import com.example.server.app.model.Response;
 import com.example.server.app.model.Server;
 import com.example.server.app.service.implementation.ServerServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +31,7 @@ import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 @RestController
 @RequestMapping("/server")
 @RequiredArgsConstructor
+@Slf4j
 public class ServerResource {
     private final ServerServiceImpl serverService;
 
@@ -102,6 +104,7 @@ public class ServerResource {
 
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
-        return Files.readAllBytes(Paths.get("/src/test/resources/static/" + fileName));
+        log.info(fileName);
+        return Files.readAllBytes(Paths.get("/src/main/resources/" + fileName));
     }
 }
