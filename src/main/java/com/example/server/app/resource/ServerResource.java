@@ -85,6 +85,21 @@ public class ServerResource {
 
     }
 
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<Response> deleteServer(@PathVariable("id") Long id) {
+
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(LocalDateTime.now())
+                        .data(Map.of("deleted", serverService.delete(id)))
+                        .message("Server deleted")
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+
+    }
+
+
 
 
 
