@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
@@ -103,8 +106,8 @@ public class ServerResource {
     }
 
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
-    public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
-        log.info(fileName);
-        return Files.readAllBytes(Paths.get("/src/main/resources/" + fileName));
+    public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException, URISyntaxException {
+        URL resource = ServerResource.class.getResource(fileName);
+        return Files.readAllBytes(Path.of(resource.toURI()));
     }
 }
