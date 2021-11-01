@@ -21,6 +21,7 @@ import java.util.Map;
 import static com.example.server.app.enumeration.Status.SERVER_UP;
 import static org.springframework.http.HttpStatus.CREATED;
 
+@RestController
 @RequestMapping("/server")
 @RequiredArgsConstructor
 public class ServerResource {
