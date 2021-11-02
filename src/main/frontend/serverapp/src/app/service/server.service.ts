@@ -13,9 +13,8 @@ export class ServerService {
 
 
 
-  getServers(): Observable<CustomResponse>{
-    return this.http.get<CustomResponse>('http://localhost:8080/server/list')
-  }
+
+   servers$ =    this.http.get<CustomResponse>(`${this.apiUrl}/server/list`)
 
 
 }
